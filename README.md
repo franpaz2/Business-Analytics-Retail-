@@ -1,64 +1,68 @@
 # Retail Business Analytics
-**Market Entry Strategy & Data-Driven Business Model para Cafetería de Especialidad**
+**Market Entry Strategy & Data-Driven Business Model for a Specialty Coffee Shop**
 
 ![R](https://img.shields.io/badge/R-276DC3?style=for-the-badge&logo=r&logoColor=white)
 ![Data Storytelling](https://img.shields.io/badge/Data_Storytelling-4B0082?style=for-the-badge)
 ![Data Engineering](https://img.shields.io/badge/Data_Wrangling-F24E1E?style=for-the-badge)
 ![Business Intelligence](https://img.shields.io/badge/Business_Intelligence-0048C0?style=for-the-badge)
 
-> **Retail Business Analytics** es un proyecto integral de inteligencia de mercado diseñado para validar la viabilidad comercial de una cafetería en Torrevieja. Combina un pipeline robusto de ingeniería de datos (ETL en R) con un análisis de negocio profundo para transformar datos demográficos y de movilidad crudos en decisiones operativas y financieras accionables.
+> **Retail Business Analytics** is a comprehensive market intelligence project designed to validate the commercial viability of a coffee shop in Torrevieja. It combines a robust data engineering pipeline (ETL in R) with deep business analysis to transform raw demographic and mobility data into actionable operational and financial decisions.
 
 ---
 
-## El Reto de Negocio
-El sector del Retail y la hostelería presenta una alta tasa de fracaso durante el primer año debido a decisiones basadas en la intuición. El reto consistió en evaluar un espacio comercial reducido (25m2 útiles) con un aforo máximo de 15 personas. El objetivo era maximizar la rentabilidad del metro cuadrado definiendo el *target* óptimo, las franjas horarias de mayor conversión y la estrategia de producto basándonos en la evolución demográfica real y el análisis de la competencia.
+## The Business Challenge
+The retail and hospitality sector experiences a high failure rate during the first year due to intuition-based decision-making. The challenge consisted of evaluating a small commercial space (25m2 usable) with a maximum capacity of 15 people. The goal was to maximize profitability per square meter by defining the optimal target audience, peak conversion time slots, and product strategy based on real demographic evolution and competitor analysis.
 
 ---
 
-## Arquitectura Técnica y Procesamiento de Datos (Data Wrangling)
+## Technical Architecture & Data Processing (Data Wrangling)
 
-Para garantizar la precisión de las conclusiones comerciales, se desarrolló un pipeline de datos estructurado en el entorno R Markdown, procesando múltiples fuentes de datos en bruto (.csv).
+To ensure the accuracy of the commercial conclusions, a structured data pipeline was developed in the R Markdown environment, processing multiple raw data sources (.csv).
 
-### 1. Stack Tecnológico
-* **Lenguaje:** R
-* **Manipulación y ETL:** `dplyr`, `readr`
-* **Series Temporales:** `lubridate`
-* **Visualización Avanzada:** `ggplot2`
+### 1. Tech Stack
+* **Language:** R
+* **Data Manipulation & ETL:** `dplyr`, `readr`
+* **Time Series:** `lubridate`
+* **Advanced Visualization:** `ggplot2`
 
-### 2. Pipeline ETL y Limpieza de Datos
-* **Regex y Type Casting:** Limpieza algorítmica de formatos europeos (eliminación de separadores de miles mediante `gsub`) y conversión estricta de cadenas de texto a variables numéricas continuas para habilitar el cálculo estadístico.
-* **Procesamiento de Series Temporales:** Desestructuración de campos temporales anidados (ej. "2023M01") extrayendo sub-cadenas para instanciar variables independientes de año (`year`) y mes (`month`).
-* **Enriquecimiento de Datos (Joins):** Cruce de subtablas espaciales y demográficas (mediante `merge()`) para consolidar volúmenes poblacionales con métricas paramétricas de gasto por nacionalidad.
+### 2. ETL Pipeline & Data Cleaning
+* **Regex & Type Casting:** Algorithmic cleaning of European formats (removal of thousands separators using `gsub`) and strict conversion of text strings into continuous numerical variables to enable statistical calculation.
+* **Time Series Processing:** Destructuring nested temporal fields (e.g., "2023M01") by extracting substrings to instantiate independent `year` and `month` variables.
+* **Data Enrichment (Joins):** Crossing spatial and demographic sub-tables (using `merge()`) to consolidate population volumes with parametric spending metrics by nationality.
 
-### 3. Feature Engineering y Modelado Dimensional
-* **Normalización de Estacionalidad:** Cálculo de la tasa de estacionalidad normalizando el peso turístico mensual respecto a la sumatoria anual total.
-* **KPIs Sintéticos de Negocio:** Diseño de nuevas variables derivadas en cascada (Pipeline de `dplyr`), destacando el cálculo predictivo del *Impacto Total* (población multiplicada por gasto promedio cruzado entre turistas y residentes locales).
-* **EDA Multidimensional:** Programación de gráficos de alta densidad en `ggplot2` mapeando 4 dimensiones matemáticas simultáneas en el análisis de competencia: Distancia al local (Eje X), Puntuación (Eje Y), Volumetría de reseñas (Tamaño) y Ticket Medio (Gradiente de color continuo).
-
----
-
-## Descubrimientos Clave y Estrategia Accionable (Key Insights)
-
-El cruce de datos demográficos y el pipeline de *Feature Engineering* revelaron los siguientes ejes estratégicos:
-
-### 1. Segmentación y Público Objetivo
-* **Cambio Sociodemográfico:** El porcentaje de población española ha descendido al 47.9%, mientras que la población ucraniana y del norte de Europa ha experimentado un incremento crítico. 
-* **Estrategia Omnicanal:** Implementación obligatoria de menús digitales (QR) en Español, Inglés, Ruso y Ucraniano.
-
-### 2. Optimización Operativa por Franjas Horarias
-* **07:30 – 10:00 (35% del gasto):** Tráfico dominado por trabajadores locales. Requiere un modelo operativo centrado en la rapidez y el formato *Take Away* para mitigar la limitación de aforo.
-* **10:00 – 13:00 (30% del gasto):** Dominado por residentes extranjeros orientados a un consumo prolongado (*Brunch*).
-* **Adaptación de Producto:** Alineación de la oferta con tendencias detectadas (productos *gluten-free*, veganos y leches vegetales), ajustando el ticket medio al crecimiento sostenido de la renta per cápita del municipio.
+### 3. Feature Engineering & Dimensional Modeling
+* **Seasonality Normalization:** Calculation of the seasonality rate by normalizing the monthly tourist weight against the total annual sum.
+* **Synthetic Business KPIs:** Design of new cascaded derived variables (`dplyr` pipeline), highlighting the predictive calculation of *Total Impact* (population multiplied by average spending crossed between tourists and local residents).
+* **Multidimensional EDA:** Programming high-density charts in `ggplot2` mapping 4 simultaneous mathematical dimensions in the competitor analysis: Distance to the venue (X-Axis), Rating (Y-Axis), Review Volume (Size), and Average Ticket (Continuous color gradient).
 
 ---
 
-## Cómo reproducir el análisis
+## Key Insights & Actionable Strategy
 
-1. Clona el repositorio:
+Crossing demographic data and the Feature Engineering pipeline revealed the following strategic axes:
+
+### 1. Segmentation & Target Audience
+* **Sociodemographic Shift:** The percentage of the Spanish population has decreased to 47.9%, while the Ukrainian and Northern European population has experienced a critical increase. 
+* **Omnichannel Strategy:** Mandatory implementation of digital menus (QR) in Spanish, English, Russian, and Ukrainian.
+
+### 2. Operational Optimization by Time Slots
+* **07:30 – 10:00 (35% of spending):** Traffic dominated by local workers. Requires an operational model focused on speed and a *Take Away* format to mitigate capacity limitations.
+* **10:00 – 13:00 (30% of spending):** Dominated by foreign residents oriented towards prolonged consumption (*Brunch*).
+* **Product Adaptation:** Alignment of the offering with detected trends (gluten-free, vegan products, and plant-based milks), adjusting the average ticket to the sustained growth of the municipality's per capita income.
+
+---
+
+## How to Reproduce the Analysis
+
+1. Clone the repository:
 ```bash
 git clone [https://github.com/tu-usuario/retail-business-analytics.git](https://github.com/tu-usuario/retail-business-analytics.git)
 cd retail-business-analytics
+```
+2. Install dependencies (R Console):
+```R
 install.packages(c("dplyr", "ggplot2", "readr", "lubridate"))
 ```
-Ejecuta el notebook limpieza_graficas.Rmd para compilar el pipeline de datos y generar el documento analítico final.
-Análisis y Data Engineering co-desarrollado por el ecosistema Iceberg Datum.
+3. Run the `limpieza_graficas.Rmd` notebook to compile the data pipeline and generate the final analytical document.
+
+*Analysis and Data Engineering co-developed by the Iceberg Datum ecosystem.*
